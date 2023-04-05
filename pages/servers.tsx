@@ -227,7 +227,7 @@ const Servers = () => {
     <Layout>
       <Hero mobileImage={serverHeroMobile} desktopImage={serverHeroDesktop}>
         <h1 className="h2 mb-5">
-          <FormattedMessage id="servers" defaultMessage="Servers" />
+          <FormattedMessage id="servers-pick" defaultMessage="Pick a server" />
         </h1>
 
         <p className="sh1 mb-14 max-w-[36ch]">
@@ -691,7 +691,9 @@ const ServerFilters = ({
                           id: "wizard.filter.all_categories",
                           defaultMessage: "All topics",
                         })
-                      : (categoriesMessages[item.category] ? intl.formatMessage(categoriesMessages[item.category]) : item.category)}
+                      : categoriesMessages[item.category]
+                      ? intl.formatMessage(categoriesMessages[item.category])
+                      : item.category}
 
                     <span
                       className={

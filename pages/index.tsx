@@ -55,23 +55,16 @@ function Home() {
         </p>
 
         <div className="flex justify-center gap-12">
-          <LinkButton size="large" href="/apps">
+          <LinkButton size="large" href="/get-started">
             <FormattedMessage
-              id="home.get_the_app"
-              defaultMessage="Get the app"
-            />
-          </LinkButton>
-
-          <LinkButton size="large" href="/servers" light borderless>
-            <FormattedMessage
-              id="home.create_account"
-              defaultMessage="Create account"
+              id="home.get_started"
+              defaultMessage="Get started"
             />
           </LinkButton>
         </div>
       </Hero>
-      <Features />
       <WhyMastodon />
+      <Features />
       <Testimonials testimonials={testimonials} />
       <Sponsors sponsors={{ platinum, additionalFunding }} />
       <Head>

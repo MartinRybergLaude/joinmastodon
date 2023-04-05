@@ -24,6 +24,10 @@ const Header = ({ transparent = true }: HeaderProps) => {
   // prettier-ignore
   const navigationItems = [
     {
+      value: "/",
+      label: <FormattedMessage id="nav.home.title" defaultMessage="Home" />,
+    },
+    {
       value: "/servers",
       label: <FormattedMessage id="nav.servers.title" defaultMessage="Servers" />,
     }, {
