@@ -29,6 +29,7 @@ import Hero from "../components/Hero"
 import { getDirForLocale } from "../utils/locales"
 import { useRouter } from "next/router"
 import Layout from "../components/Layout"
+import { FiChevronDown } from "react-icons/fi"
 
 function Home() {
   const intl = useIntl()
@@ -62,6 +63,7 @@ function Home() {
             />
           </LinkButton>
         </div>
+        <FiChevronDown className="mt-10 text-white animate-bounce text-h3" />
       </Hero>
       <WhyMastodon />
       <Features />

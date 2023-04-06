@@ -26,6 +26,7 @@ specifiers:
   react: 18.2.0
   react-blurhash: ^0.3.0
   react-dom: 18.2.0
+  react-icons: ^4.8.0
   react-intl: ^6.0.5
   sass: ^1.54.4
   sharp: ^0.31.3
@@ -47,6 +48,7 @@ dependencies:
   react: 18.2.0
   react-blurhash: 0.3.0_jn2mscwhzxibfzgdau2qdbmjna
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.8.0_react@18.2.0
   react-intl: 6.0.5_qtbnez4q7bzoc4eqybg3efzzxe
   sass: 1.54.4
   sharp: 0.31.3
@@ -3996,6 +3998,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-icons/4.8.0_react@18.2.0:
+    resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-intl/6.0.5_qtbnez4q7bzoc4eqybg3efzzxe:

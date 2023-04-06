@@ -23,6 +23,7 @@ import SkeletonText from "../components/SkeletonText"
 import Head from "next/head"
 import Layout from "../components/Layout"
 import Link from "next/link"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 
 const DUNBAR = Math.log(800)
 
@@ -223,22 +224,45 @@ const Servers = () => {
     },
   ]
 
+  const [expanded, setExpanded] = useState(false)
+
   return (
     <Layout>
       <Hero mobileImage={serverHeroMobile} desktopImage={serverHeroDesktop}>
         <h1 className="h2 mb-5">
           <FormattedMessage id="servers-pick" defaultMessage="Pick a server" />
         </h1>
-
-        <p className="sh1 mb-14 max-w-[36ch]">
-          <FormattedMessage
-            id="servers.hero.body"
-            defaultMessage="Mastodon is not a single website. To use it, you need to make an account with a provider—we call them <b>servers</b>—that lets you connect with other people across Mastodon."
-            values={{
-              b: (text) => <b>{text}</b>,
-            }}
-          />
-        </p>
+        <button
+          className="flex items-center gap-4"
+          onClick={() => setExpanded((expanded) => !expanded)}
+        >
+          <h2 className="h6 text-left">
+            Wondering which server you should pick?
+          </h2>
+          {!expanded ? (
+            <FiChevronDown className="text-h6 mt-[10px] text-white animate-bounce" />
+          ) : (
+            <FiChevronUp className="text-h6 mt-[10px] text-white animate-bounce" />
+          )}
+        </button>
+        {expanded && (
+          <div>
+            <p className="text-b1 mt-2">
+              A server is where your account lives and affects moderation rules
+              on your posts. You can always follow & interact with people on
+              other servers.
+            </p>
+            <p className="text-b1 mt-4">
+              More information{" "}
+              <a
+                href="https://docs.joinmastodon.org/"
+                className="font-bold underline"
+              >
+                here!
+              </a>
+            </p>
+          </div>
+        )}
       </Hero>
 
       <div className="grid gap-20 pb-40">
@@ -455,6 +479,15 @@ const ServerList = ({ servers }) => {
     )
   }
 
+  function shuffleArray<T>(array: T[]) {
+    const _array = [...array]
+    for (let i = _array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[_array[i], _array[j]] = [_array[j], _array[i]]
+    }
+    return _array
+  }
+
   return (
     <div className="col-span-4 md:col-start-4 md:col-end-13">
       {servers.data?.length === 0 ? (
@@ -472,21 +505,12 @@ const ServerList = ({ servers }) => {
             ? Array(8)
                 .fill(null)
                 .map((_el, i) => <ServerCard key={i} />)
-            : servers.data
-                .sort((a, b) => {
-                  if (a.approval_required === b.approval_required) {
-                    return b.last_week_users - a.last_week_users
-                  } else if (a.approval_required) {
-                    return 1
-                  } else if (b.approval_required) {
-                    return -1
-                  } else {
-                    return b.last_week_users - a.last_week_users
-                  }
-                })
-                .map((server) => (
-                  <ServerCard key={server.domain} server={server} />
-                ))}
+            : shuffleArray(servers.data).map((server) => (
+                <ServerCard
+                  key={(server as Server).domain}
+                  server={server as Server}
+                />
+              ))}
         </div>
       )}
     </div>
